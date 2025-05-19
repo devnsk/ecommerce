@@ -1,0 +1,30 @@
+<div class="main-content">
+    <div class="section-content section-content-p30">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div *ngIf="products.length > 0; else noProducts" class="product-grid">
+                    <div *ngFor="let product of products" class="product-item">
+                        <img [src]="product.imageUrl" alt="{{ product.name }}" class="product-image" />
+                        <h3>{{ product.name }}</h3>
+                        <p>{{ product.description }}</p>
+                        <p>Price: {{ product.unitPrice | currency }}</p>
+                        <p>Stock: {{ product.unitsInStock }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #noProducts>
+    <p>No products found for this category.</p>
+</ng-template>
+
+<!-- Pagination Controls -->
+<!-- <div class="pagination" *ngIf="totalPages > 1">
+  <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 0">Previous</button>
+  <span>Page {{ currentPage + 1 }} of {{ totalPages }}</span>
+  <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages - 1">Next</button>
+</div> -->
