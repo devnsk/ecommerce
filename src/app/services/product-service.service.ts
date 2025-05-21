@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { Product } from '../common/product';
@@ -34,5 +34,13 @@ export class ProductServiceService {
   deleteProduct(id: number): Observable<void> {
     return this.httpClient.delete<void>(`${this.baseUrl}/${id}`);
   }
+  searchProducts(name: string): Observable<PaginatedResponse<Product>> {
+    let params = new HttpParams();
+    if (name) {
+      params = params.set('name', name);
+    }
+    return this.httpClient.get<PaginatedResponse<Product>>(`${this.baseUrl}/search`, { params });
+  }
+
 }
 
