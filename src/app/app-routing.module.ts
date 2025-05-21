@@ -13,6 +13,9 @@ const routes: Routes = [
   {
     path: 'products', component: ProductListsComponent
   },
+   {
+    path: 'products/:id', component: ProductDetailsComponent
+  },
   {
     path: 'search/:keyword', component: ProductListsComponent
   }, {
@@ -22,9 +25,7 @@ const routes: Routes = [
     path: '', redirectTo: '/products', pathMatch: 'full'
   }, {
     path: '**', redirectTo: '/products', pathMatch: 'full'
-  },{
-    path:'products/:id',component:ProductDetailsComponent
-  }
+  },
 
 ];
 
