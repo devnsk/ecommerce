@@ -5,3 +5,8 @@ export interface ProductCategory {
   categoryName: string;
   products: Product[];
 }
+export class ProductCategory {
+  constructor(public id: number, public categoryName: string) {
+
+  }
+}
