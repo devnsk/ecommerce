@@ -11,7 +11,9 @@ export class ProductServiceService {
   private baseUrl = 'http://localhost:8080/api/products';
 
   constructor(private httpClient: HttpClient) { }
-
+  getProduct(id:number):Observable<Product>{
+    return this.httpClient.get<Product>(`${this.baseUrl}/${id}`)
+  }
   getProductList(): Observable<Product[]> {
     return this.httpClient.get<Product[]>(this.baseUrl);
   }
