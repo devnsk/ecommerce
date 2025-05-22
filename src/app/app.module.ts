@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductListsComponent } from './components/product-lists/product-lists.component';
@@ -20,7 +20,7 @@ import { ProductDetailsComponent } from './components/product-details/product-de
   imports: [
     BrowserModule,
     AppRoutingModule,
-
+    NgbModule
 
   ],
   providers: [provideHttpClient(withInterceptorsFromDi())],

@@ -11,7 +11,7 @@ export class ProductServiceService {
   private baseUrl = 'http://localhost:8080/api/products';
 
   constructor(private httpClient: HttpClient) { }
-  getProduct(id:number):Observable<Product>{
+  getProduct(id: number): Observable<Product> {
     return this.httpClient.get<Product>(`${this.baseUrl}/${id}`)
   }
   getProductList(): Observable<Product[]> {
@@ -42,6 +42,14 @@ export class ProductServiceService {
       params = params.set('name', name);
     }
     return this.httpClient.get<PaginatedResponse<Product>>(`${this.baseUrl}/search`, { params });
+  }
+  getProductListPaginate(thePage: number, thePageSize: number, theCategoryId: number): Observable<PaginatedResponse<Product>> {
+    const url = `${this.baseUrl}?page=${thePage}&size=${thePageSize}&categoryId=${theCategoryId}`;
+    return this.httpClient.get<PaginatedResponse<Product>>(url);
+  }
+  searchProductsPaginate(thePage: number, thePageSize: number, theKeyword: string): Observable<PaginatedResponse<Product>> {
+    const searchUrl = `{this.baseUrl}/search?name=${theKeyword}` + `&page=${thePage}&size=${thePageSize}`;
+    return this.httpClient.get<PaginatedResponse<Product>>(searchUrl);
   }
 
 }

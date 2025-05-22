@@ -12,15 +12,47 @@
                         </a>
 
                         <h3>{{ product.name }}</h3>
-                       
+
                         <p class="price">Price: {{ product.unitPrice | currency }}</p>
-                     
+
                     </div>
                 </div>
                 <div *ngIf="products?.length == 0" class="alert alert-warning col-md-12" role="alert">
                     No products found .
                 </div>
             </div>
+            <!-- footer start -->
+            <div class="footer-pagination">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div style="padding-left:30%" class="col-md-9">
+
+                                    <ngb-pagination [(page)]="thePageNumber" [pageSize]="pageSize" [maxSize]="5"
+                                        [collectionSize]="totalElements" (pageChange)="listProducts()">
+
+                                    </ngb-pagination>
+                                </div>
+                                <div class="col-md-2 mt-2" style="text-align: right;" >
+                                    <span class="mr-2">Page&nbsp;Size  </span>
+                                      <select #myPageSelect (change)="updatePageSize(myPageSelect.value)">
+                                            <option>2</option>
+                                            <option selected="true">5</option>
+                                            <option>10</option>
+                                            <option>20</option>
+                                            <option>50</option>
+                                            
+                                        </select>
+                                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- footer end -->
         </div>
     </div>
 </div>
