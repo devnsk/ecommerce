@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Product } from '../../common/product';
 import { ProductServiceService } from '../../services/product-service.service';
 import { ActivatedRoute } from '@angular/router';
+import { CartService } from '../../services/cart.service';
+import { CartItem } from '../../common/cart-item';
 
 @Component({
   selector: 'app-product-details',
@@ -10,11 +12,13 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProductDetailsComponent {
   product!: Product;
-  constructor(private productService: ProductServiceService, private route: ActivatedRoute) { }
+  //product:Product = new Product();
+  constructor(private productService: ProductServiceService, private route: ActivatedRoute,private cartService:CartService) { }
   ngOnInit(): void {
     this.route.paramMap.subscribe(() => {
       this.handleProductDetails();
-    })
+    });
+
   }
   handleProductDetails() {
     //g et id and convert it to number
@@ -26,4 +30,11 @@ export class ProductDetailsComponent {
       }
     )
   }
+   addToCart(theProduct:Product){
+      console.log(`Adding to cart: ${theProduct.name},${theProduct.unitPrice}`);
+      const theCartItem = new CartItem(theProduct);
+      this.cartService.addToCart(theCartItem);
+      
+    }
+ 
 }

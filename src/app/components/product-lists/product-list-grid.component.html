@@ -14,7 +14,10 @@
                         <h3>{{ product.name }}</h3>
 
                         <p class="price">Price: {{ product.unitPrice | currency:'INR' }}</p>
-
+                        <button class="btn btn-primary btn-sm" 
+                     (click)="addToCart(product)" 
+                        href="#">Add to cart</button>
+                        <!--     -->
                     </div>
                 </div>
                 <div *ngIf="products?.length == 0" class="alert alert-warning col-md-12" role="alert">
@@ -29,26 +32,22 @@
                             <div class="row">
                                 <div style="padding-left:30%" class="col-md-9">
 
-                                    <ngb-pagination 
-                                    [(page)]="thePageNumber" 
-                                    [pageSize]="pageSize" 
-                                    [maxSize]="5"
-                                        [collectionSize]="totalElements"
-                                         (pageChange)="listProducts()">
+                                    <ngb-pagination [(page)]="thePageNumber" [pageSize]="pageSize" [maxSize]="5"
+                                        [collectionSize]="totalElements" (pageChange)="listProducts()">
 
                                     </ngb-pagination>
                                 </div>
-                                <div class="col-md-2 mt-2" style="text-align: right;" >
-                                    <span class="mr-2">Page&nbsp;Size  </span>
-                                      <select #myPageSelect (change)="updatePageSize(myPageSelect.value)">
-                                            <option>2</option>
-                                            <option selected="true">5</option>
-                                            <option>10</option>
-                                            <option>20</option>
-                                            <option>50</option>
-                                            
-                                        </select>
-                                
+                                <div class="col-md-2 mt-2" style="text-align: right;">
+                                    <span class="mr-2">Page&nbsp;Size </span>
+                                    <select #myPageSelect (change)="updatePageSize(myPageSelect.value)">
+                                        <option>2</option>
+                                        <option selected="true">5</option>
+                                        <option>10</option>
+                                        <option>20</option>
+                                        <option>50</option>
+
+                                    </select>
+
                                 </div>
                             </div>
                         </div>

@@ -3,6 +3,8 @@ import { Product } from '../../common/product';
 import { ProductServiceService } from '../../services/product-service.service';
 import { ActivatedRoute } from '@angular/router';
 import { PaginatedResponse } from '../../common/paginated-response';
+import { CartItem } from '../../common/cart-item';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-product-lists',
@@ -26,8 +28,7 @@ export class ProductListsComponent {
 
 
 
-  constructor(private productService: ProductServiceService,
-
+  constructor(private productService: ProductServiceService,private cartService:CartService,
     private route: ActivatedRoute
   ) {
 
@@ -139,5 +140,11 @@ export class ProductListsComponent {
       this.pageSize = data.size;
       this.totalElements = data.totalElements;
     };
+  }
+   addToCart(theProduct:Product){
+    console.log(`Adding to cart: ${theProduct.name},${theProduct.unitPrice}`);
+    const theCartItem = new CartItem(theProduct);
+    this.cartService.addToCart(theCartItem);
+    
   }
 }
